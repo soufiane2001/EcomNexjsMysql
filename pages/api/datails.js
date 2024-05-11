@@ -17,8 +17,8 @@ export default async function handler(req, res) {
     console.log('Received data:', data);
     // Perform necessary operations and send response
     const results = await db.query(
-      `INSERT INTO orders VALUES (?,?,?,?,?,?)`,
-      [data.id,data.name,data.qte,data.somme,data.adress,data.etat]
+      `INSERT INTO orderdetails VALUES (?,?,?,?)`,
+      [data.id,data.idpr,data.qte,data.qte]
     )
 
     res.status(200).json({ message: 'Data received successfully!' });

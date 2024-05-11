@@ -2,13 +2,16 @@ import Link from 'next/link';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store';
-const Header = () => {
+import Image from 'next/image';
+const Header = (props) => {
   const count = useSelector((state: RootState) => state.cart.cart)
     return (
         <nav className="py-6 border-b-1 border-violet-900 shadow-md">
         <div className="container px-28 mx-auto flex justify-between items-center">
           <div>
-            <Link href="/" className="text-white text-lg font-semibold">Your Logo</Link>
+            <Link href="/" className="text-white text-lg font-semibold">
+              <img alt="" style={{width:150,height:60}} src="https://res.cloudinary.com/dzkx1z6lo/image/upload/v1715429475/cp-removebg-preview_wggt2y.png" />
+            </Link>
           </div>
           <div className="flex items-center">
             

@@ -12,10 +12,11 @@ const handleClick = () => {
   dispatch(addToCart(props.product));
 };
     return (
-        <div className="max-w-sm mt-10  sm:ml-10 rounded overflow-hidden shadow-lg">
-        <img className=" w-72" src={props.product.img} alt="Card image"/>
-        <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">{props.product.intitule}</div>
+        <div className=" w-62 mt-10 rounded-lg  sm:ml-10 rounded overflow-hidden shadow-lg">
+       <div style={{backgroundColor:'white'}}>
+        <img className="w-60 h-52" src={props.product.img} alt="Card image"/>
+        <div   className="px-6 py-4">
+          <div  className="text-xl mb-2">{props.product.intitule}</div>
           <p className="text-gray-700 text-xl">
           {props.product.price}DH
           </p>
@@ -27,6 +28,7 @@ const handleClick = () => {
   Add to Cart
 </button>
 
+        </div>
         </div>
       </div>
       

@@ -3,6 +3,8 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import mysql from 'serverless-mysql';
 import { useRouter } from 'next/router';
+import { RiDeleteBin2Line } from 'react-icons/ri';
+
 const db = mysql({
   config: {
     host: "localhost",
@@ -27,6 +29,10 @@ const router = useRouter();
 
 const count = useSelector((state: RootState) => state.cart.cart)
 const dispatch = useDispatch()
+var [type,setType]=useState(0);
+var changecat=(n)=>{
+setType(n)
+}
 
 const handleSubmit = async (e) => {
   e.preventDefault();
@@ -49,15 +55,19 @@ const handleSubmit = async (e) => {
 
 
   return (
-    <div style={{height:'1000px'}} >
+    <div>
      
-      <Header/> 
-      <Categorie/>
+      <Header /> 
+      <Categorie changeType={changecat}/>
 
- <div className="container  mt-10  shadow-sm  py-7 mx-auto flex justify-around items-center flex-wrap">
-        {products !=null && products.map((product:any) => (
+ <div className="container  mt-4  shadow-sm  py-7 mx-auto flex justify-around items-center flex-wrap">
+        {products !=null && type==0 ? products.map((product:any) => (
         <Card product={product}  />
-        ))}
+        )):products.map((product:any) => {
+          if(product.categorie==type){
+            return  <Card product={product}  />
+          }
+        } )}
       </div>
     </div>
   )
@@ -66,7 +76,9 @@ const handleSubmit = async (e) => {
 export async function getServerSideProps() {
   var pr=[];
     const results:any = await db.query('SELECT * FROM products');
-    await db.end();
+    
+  
+await db.end();
 results.map((x)=>{
   pr.push(x)
 })

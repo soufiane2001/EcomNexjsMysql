@@ -11,7 +11,7 @@ const db = mysql({
 export default async function handler(req, res) {
     if (req.method === 'POST') {
       try {
-        const results = await db.query('INSERT INTO `products`( `name`, `price`, `inventory`) VALUES (?,?,?)',["maroc", 25, 25]);
+        const results = await db.query('INSERT INTO orders VALUES (?,?,?,?,?,?) values(k212,souf201,234,122,casa,false)');
         await db.end();
         res.status(201).json({ message: 'User added successfully' });
       } catch (error) {

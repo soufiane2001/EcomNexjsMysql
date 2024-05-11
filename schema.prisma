@@ -1,0 +1,17 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL") // Use environment variable for connection string
+}
+
+generator client {
+  provider = "nodejs"
+}
+
+model Order {
+  idorder        Int      
+  clientname      String
+  number     int 
+  totalprice int
+  city  String
+  status String
+}

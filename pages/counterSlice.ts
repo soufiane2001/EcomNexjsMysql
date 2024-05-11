@@ -5,12 +5,18 @@ export interface CartItem {
   name: string;
   price: number;
   quantity: number;
+  stock:number;
   // ...other properties
 }
 
 const initialState: { cart: CartItem[] } = {
   cart: [],
+  
 };
+
+
+
+
 
 export const cart = createSlice({
   name: 'cart',
@@ -43,9 +49,34 @@ else{
 
       state.cart = state.cart.filter((item) => item.id !== itemId);
     },
+     add: (state, action) => {
+      const itemId = action.payload.id; // Extract the item ID to remove
+
+   
+      const index = state.cart.findIndex(item => item.id === action.payload.id);
+      if (index !== -1) {
+          // If it exists, increment its quantity
+          if(state.cart[index].quantity<state.cart[index].stock){
+          state.cart[index].quantity++;
+          }
+      } 
+    },
+    decriment: (state, action) => {
+      const itemId = action.payload.id; // Extract the item ID to remove
+
+   
+      const index = state.cart.findIndex(item => item.id === action.payload.id);
+      if (index !== -1) {
+          // If it exists, increment its quantity
+          if(state.cart[index].quantity!=1){
+              state.cart[index].quantity--;
+          }
+      } 
+    },
+
   },
 });
 
-export const { addToCart, removeFromCart } = cart.actions;
+export const { addToCart, removeFromCart ,add,decriment} = cart.actions;
 
 export default cart.reducer;
